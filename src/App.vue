@@ -16,7 +16,10 @@
     >
     {{ item.title }}
       <div class="sfProText400">
-        {{item.text}}
+        {{ item.text }}
+      </div>
+      <div class="sfProText400 themeBorder">
+        {{ item.theme }}
       </div>
     </div>
   </div>
@@ -34,8 +37,11 @@
     @dragstart="startDrag($event, item)"
     >
     {{ item.title }}
-    <div class="sfProText400">
-        {{item.text}}
+      <div class="sfProText400">
+        {{ item.text }}
+      </div>
+      <div class="sfProText400 themeBorder">
+        {{ item.theme }}
       </div>
     </div>
   </div>
@@ -53,8 +59,11 @@
     @dragstart="startDrag($event, item)"
     >
     {{ item.title }}
-    <div class="sfProText400">
-        {{item.text}}
+      <div class="sfProText400">
+        {{ item.text }}
+      </div>
+      <div class="sfProText400 themeBorder">
+        {{ item.theme }}
       </div>
     </div>
   </div>
@@ -73,11 +82,13 @@
     >
     {{ item.title }}
       <div class="sfProText400">
-          {{item.text}}
+          {{ item.text }}
+      </div>
+      <div class="sfProText400 themeBorder">
+        {{ item.theme }}
       </div>
     </div>
   </div>
-
 <div>
 </div>
 </template>
@@ -88,19 +99,19 @@
   export default {
     setup(){
       const items = ref([
-        {id : 0, title: 'Twilio integration', text: 'Create new note via SMS. Support text, audio, links, and media.' , list: 1},
-        {id : 1, title: 'Markdown support', text: 'Markdown shorthand converts to formatting', list: 1},
+        {id : 0, title: 'Twilio integration', text: 'Create new note via SMS. Support text, audio, links, and media.', theme:'', list: 1},
+        {id : 1, title: 'Markdown support', text: 'Markdown shorthand converts to formatting', theme:'Formatting', list: 1},
         {id : 2, title: 'Tablet view', text: '', list: 2},
-        {id : 3, title: 'Audio recording in note', text: 'Show audio in a note and playback UI', list: 2},
-        {id : 4, title: 'Bookmark in note', text: 'Show rich link UI in a note, and feature to render website screenshot.', list: 2},
-        {id : 5, title: 'Image viewer', text: 'Opens when clicking on the thumbnail in the list or on the image in the note', list: 2},
-        {id : 6, title: 'Mobile view', text: 'Functions for both web responsive and native apps. Note: Android and iOS will need unique share icons.', list: 3},
-        {id : 7, title: 'Desktop view', text: 'PWA for website and native apps. Note: Windows and Mac will need unique share icons.', list: 3},
-        {id : 8, title: 'Formatting options', text: 'Mobile formatting bar expands and collapses when tapping the format icon.', list: 3},
-        {id : 9, title: 'Media in note', text: 'Image & video with player UI', list: 3},
-        {id : 10, title: 'Audio recording', text: 'Interface for when recording a new audio note', list: 4},
-        {id : 11, title: 'Bookmarking', text: 'Interface for when creating a new link note.', list: 4},
-        {id : 12, title: 'Mobile home screen', text: 'Folders, tags, and notes lists are sorted by recent.', list: 4},
+        {id : 3, title: 'Audio recording in note', text: 'Show audio in a note and playback UI', theme:'Note interface', list: 2},
+        {id : 4, title: 'Bookmark in note', text: 'Show rich link UI in a note, and feature to render website screenshot.', theme:'Note interface', list: 2},
+        {id : 5, title: 'Image viewer', text: 'Opens when clicking on the thumbnail in the list or on the image in the note', theme:'', list: 2},
+        {id : 6, title: 'Mobile view', text: 'Functions for both web responsive and native apps. Note: Android and iOS will need unique share icons.', theme:'', list: 3},
+        {id : 7, title: 'Desktop view', text: 'PWA for website and native apps. Note: Windows and Mac will need unique share icons.', theme:'', list: 3},
+        {id : 8, title: 'Formatting options', text: 'Mobile formatting bar expands and collapses when tapping the format icon.', theme:'', list: 3},
+        {id : 9, title: 'Media in note', text: 'Image & video with player UI', theme:'Note interface', list: 3},
+        {id : 10, title: 'Audio recording', text: 'Interface for when recording a new audio note', theme:'New note', list: 4},
+        {id : 11, title: 'Bookmarking', text: 'Interface for when creating a new link note.', theme:'New note', list: 4},
+        {id : 12, title: 'Mobile home screen', text: 'Folders, tags, and notes lists are sorted by recent.', theme:'', list: 4},
       ])
 
       const getList = (list) => {
@@ -130,6 +141,8 @@
 
 
 <style>
+
+  /* Discrete element class design */
 
   body{
     max-width: 1920px;
@@ -169,7 +182,9 @@
     position: absolute;
   }
 
-  
+
+  /* Style classes */
+
   .mainContainers{
     display: flex;
     flex-direction: column;
@@ -192,13 +207,26 @@
 
     width: 296px;
     min-height: 30px;
-    
-    background: #D93535;
+    background: #7678D1;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.12), 0px 16px 32px rgba(0, 0, 0, 0.08);
     border-radius: 8px;
 
     flex: none;
     order: 1;
+    flex-grow: 0;
+  }
+
+  .themeBorder{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 2px 8px;
+    gap: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 2px;
+    flex: none;
+    order: 0;
     flex-grow: 0;
   }
 
